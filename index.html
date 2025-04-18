@@ -1,45 +1,60 @@
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>欢迎来到我的咖啡屋</title>
+  <title>zuoao321 的城堡咖啡屋</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') no-repeat center center fixed;
+      background-image: url('castle-background.jpg');
       background-size: cover;
+      background-position: center;
+      font-family: 'Times New Roman', serif;
       color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      text-shadow: 1px 1px 2px #000;
     }
     .container {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 40px;
-      border-radius: 12px;
-      max-width: 600px;
       text-align: center;
+      padding-top: 20vh;
     }
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      font-size: 3em;
+      margin-bottom: 0.5em;
     }
     p {
+      font-size: 1.5em;
+      max-width: 600px;
+      margin: 0 auto 2em auto;
+    }
+    button {
+      padding: 10px 20px;
       font-size: 1.2em;
-      line-height: 1.6em;
+      background-color: rgba(0,0,0,0.6);
+      border: 2px solid #fff;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>☕ 欢迎来到一间只为朋友开放的咖啡屋</h1>
-    <p>你已经坐在我家的客厅，手中握着一杯真正属于朋友的咖啡。<br/>
-    这个页面只属于曾到访过我家的你。</p>
+    <h1>欢迎来到 zuoao321 的城堡咖啡屋</h1>
+    <p>这个网页只属于来过我家的朋友。感谢你来到这里，希望你在这里感受到温暖与自由。</p>
+    <button onclick="document.getElementById('bg-music').play()">点击播放城堡音乐</button>
+    <audio id="bg-music" loop>
+      <source src="castle-music.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </body>
 </html>
