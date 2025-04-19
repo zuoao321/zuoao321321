@@ -1,60 +1,44 @@
-
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <title>zuoao321 的城堡咖啡屋</title>
+  <meta charset="UTF-8">
+  <title>zuoao321321 的咖啡屋</title>
   <style>
     body {
       margin: 0;
       padding: 0;
+      font-family: 'STSong', serif;
+      color: white;
       background-image: url('castle-background.jpg');
       background-size: cover;
       background-position: center;
-      font-family: 'Times New Roman', serif;
-      color: #fff;
-      text-shadow: 1px 1px 2px #000;
-    }
-    .container {
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding-top: 20vh;
+      backdrop-filter: brightness(0.7);
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
-    }
-    p {
-      font-size: 1.5em;
+    .content {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 20px;
       max-width: 600px;
-      margin: 0 auto 2em auto;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      background-color: rgba(0,0,0,0.6);
-      border: 2px solid #fff;
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: rgba(255,255,255,0.2);
-    }
-    audio {
-      display: none;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>欢迎来到 zuoao321 的城堡咖啡屋</h1>
-    <p>这个网页只属于来过我家的朋友。感谢你来到这里，希望你在这里感受到温暖与自由。</p>
-    <button onclick="document.getElementById('bg-music').play()">点击播放城堡音乐</button>
-    <audio id="bg-music" loop>
-      <source src="castle-music.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+  <audio autoplay loop>
+    <source src="castle-music.mp3" type="audio/mpeg">
+    您的浏览器不支持音频播放。
+  </audio>
+  <div class="content">
+    <h1>zuoao321321</h1>
+    <p>若此刻你能看见这些文字，说明你曾到访我家，坐在那把木椅，品过那杯微苦的咖啡。<br>
+    这里不对外公开，只为真正的朋友保留。<br>
+    在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。</p>
   </div>
 </body>
 </html>
