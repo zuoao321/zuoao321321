@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>朋友的咖啡馆</title>
+  <title>朋友的咖啡角落</title>
   <style>
     body {
       background-image: url('castle-background.png');
@@ -32,7 +32,46 @@
   </style>
 </head>
 <body>
-  <div>
+  <div></div>class="content">
+  <h1>zuoao321321</h1>
+  <p>
+    若此刻你能看见这些文字，说明你曾到访我家，品过那杯微苦的咖啡。<br>
+    这里不对外公开，只为真正的朋友保留。<br>
+    在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。
+  </p>
+
+  <button onclick="showPassword()" style="
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'STSong', serif;
+    border: none;
+    border-radius: 10px;
+    background-color: #8b5e3c;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  ">
+    点击查看 Wi-Fi 密码
+  </button>
+
+  <p id="wifi-password" style="
+    margin-top: 15px;
+    font-size: 18px;
+    display: none;
+    background-color: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+  ">
+    15545696678
+  </p>
+</div>
+<script>
+  function showPassword() {
+    document.getElementById("wifi-password").style.display = "block";
+  }
+</script>
     <h1>欢迎回来，朋友</h1>
     <p>如果你看到这个页面，说明你曾经来过。</p>
   </div>
