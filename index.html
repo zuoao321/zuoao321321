@@ -9,7 +9,7 @@
       padding: 0;
       font-family: 'STSong', serif;
       color: white;
-      background-image: url('castle-background.jpg');
+      background-image: url('castle-background.jpg'); /* 如果你放在 assets 文件夹，则改成 assets/castle-background.jpg */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -27,25 +27,22 @@
       max-width: 600px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
-  <style>
-  body {
--    background-image: url('castle-background.jpg');
-+    background-image: url('assets/castle-background.jpg');
-    /* … 其它不变 … */
-  }
-</style>
-…
-<audio autoplay loop>
--  <source src="castle-music.mp3" type="audio/mpeg">
-+  <source src="assets/castle-music.mp3" type="audio/mpeg">
-  您的浏览器不支持音频播放。
-</audio>
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="castle-music.mp3" type="audio/mpeg">
+    您的浏览器不支持音频播放。
+  </audio>
 
   <div class="content">
     <h1>zuoao321321</h1>
-    <p>若此刻你能看见这些文字，说明你曾到访我家，坐在那把木椅，品过那杯微苦的咖啡。<br>
-    这里不对外公开，只为真正的朋友保留。<br>
-    在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。</p>
+    <p>
+      若此刻你能看见这些文字，说明你曾到访我家，坐在那把木椅，品过那杯微苦的咖啡。<br>
+      这里不对外公开，只为真正的朋友保留。<br>
+      在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。
+    </p>
   </div>
 </body>
 </html>
+
