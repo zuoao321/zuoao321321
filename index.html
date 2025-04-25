@@ -2,96 +2,112 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>朋友的咖啡角落</title>
+  <title>zuoao321321 的咖啡屋</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* 整体重置与背景设置 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
+      font-family: "Georgia", serif;
+      color: #fefae0;
       background-image: url('assets/castle-background.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
       height: 100vh;
-      margin: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-family: "Georgia", serif;
-      text-shadow: 2px 2px 4px #000;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+      overflow: hidden;
     }
-
+    /* 内容盒子 */
     .content {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 2rem;
-      border-radius: 20px;
-      max-width: 700px;
+      background: rgba(0,0,0,0.6);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      max-width: 640px;
       text-align: center;
+      animation: fadeIn 1.2s ease-out both;
     }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-family: 'STSong', serif;
+    /* 按钮公共样式 */
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: #fefae0;
+      background: #8b5e3c;
       border: none;
-      border-radius: 10px;
-      background-color: #8b5e3c;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    }
-
-    #wifi-password {
-      margin-top: 15px;
-      font-size: 18px;
-      display: none;
-      background-color: rgba(255,255,255,0.1);
-      padding: 10px;
       border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: background 0.3s ease;
+    }
+    .btn:hover { background: #a77c53; }
+
+    /* Wi‑Fi 密码 */
+    #wifi-password {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      display: none;
+      background: rgba(255,255,255,0.1);
+      padding: 0.6rem;
+      border-radius: 6px;
       border: 1px dashed #ccc;
+      animation: fadeIn 0.8s ease-out both;
     }
 
+    /* 页面加载与元素淡入动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* 播放按钮固定底部 */
     #playButton {
       position: absolute;
       bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 8px;
+      left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>欢迎回来，朋友</h1>
-    <h2>zuoao321321</h2>
-    <p>
-      若此刻你能看见这些文字，说明你曾到访我家，品过那杯微苦的咖啡。<br>
-      这里不对外公开，只为真正的朋友保留。<br>
-      在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。
-    </p>
 
-    <button onclick="showPassword()">点击查看 Wi-Fi 密码</button>
-    <p id="wifi-password">15545696678</p>
+  <div class="content">
+    <h1>欢迎来到 zuoao321321 的咖啡屋</h1>
+    <p>若此刻你能看见这些文字，说明你曾到访我家，品过那杯微苦的咖啡。<br>
+       这里不对外公开，只为真正的朋友保留。<br>
+       在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。</p>
+
+    <button class="btn" onclick="showPassword()">点击查看 Wi‑Fi 密码</button>
+    <div id="wifi-password">15545696678</div>
   </div>
 
-  <audio src="assets/castle-music.mp3" autoplay loop></audio>
-  <button id="playButton">如果没有音乐，点我一下</button>
+  <!-- 背景音乐，首次加载后自动播放 -->
+<audio src="assets/castle-music.mp3" autoplay loop></audio>
+  <button id="playButton">► 播放/暂停音乐</button>
 
   <script>
+    // 页面加载后尝试自动播放
+    window.addEventListener('load', () => {
+      const audio = document.getElementById('bgm');
+      audio.play().catch(()=>{/* 自动播放被阻止 */});
+    });
+
+    // Wi-Fi 密码显示
     function showPassword() {
-      document.getElementById("wifi-password").style.display = "block";
+      document.getElementById('wifi-password').style.display = 'block';
     }
 
-    const audio = document.getElementById("bgm");
-    const button = document.getElementById("playButton");
-    button.onclick = function () {
-      audio.play();
-    };
+    // 播放/暂停按钮
+    const btn = document.getElementById('playButton');
+    const bgm = document.getElementById('bgm');
+    btn.addEventListener('click', () => {
+      if (bgm.paused) { bgm.play(); btn.textContent = '❚❚ 暂停音乐'; }
+      else           { bgm.pause(); btn.textContent = '► 播放音乐'; }
+    });
   </script>
 </body>
 </html>
