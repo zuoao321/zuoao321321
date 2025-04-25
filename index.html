@@ -1,113 +1,89 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>zuoao321321 的咖啡屋</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* 整体重置与背景设置 */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: "Georgia", serif;
-      color: #fefae0;
-      background-image: url('assets/castle-background.png');
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-      overflow: hidden;
-    }
-    /* 内容盒子 */
-    .content {
-      background: rgba(0,0,0,0.6);
-      padding: 2.5rem 2rem;
-      border-radius: 16px;
-      max-width: 640px;
-      text-align: center;
-      animation: fadeIn 1.2s ease-out both;
-    }
-    /* 按钮公共样式 */
-    .btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      color: #fefae0;
-      background: #8b5e3c;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: background 0.3s ease;
-    }
-    .btn:hover { background: #a77c53; }
-
-    /* Wi‑Fi 密码 */
-    #wifi-password {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      display: none;
-      background: rgba(255,255,255,0.1);
-      padding: 0.6rem;
-      border-radius: 6px;
-      border: 1px dashed #ccc;
-      animation: fadeIn 0.8s ease-out both;
-    }
-
-    /* 页面加载与元素淡入动画 */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    /* 播放按钮固定底部 */
-    #playButton {
-      position: absolute;
-      bottom: 20px;
-      left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Castle 主页</title>
+    <style>
+        /* 整体样式 */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            /* 背景图片 */
+            background-image: url('assets/castle-background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadein 2s ease-in;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* 内容容器 */
+        .content {
+            /* 半透明背景来增强可读性（可根据需要调整或移除） */
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        /* 按钮样式 */
+        button {
+            background-color: #A67C52; /* 棕色系 */
+            color: #ffffff;
+            border: 2px solid #5C3A21;
+            border-radius: 8px;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        button:hover {
+            opacity: 1;
+        }
+        /* 密码显示样式 */
+        #wifiPassword {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #5C3A21;
+            display: none; /* 初始隐藏 */
+        }
+    </style>
 </head>
 <body>
+    <div class="content">
+        <!-- 按钮：查看 Wi-Fi 密码 -->
+        <button id="wifiButton">点击查看 Wi-Fi 密码</button><br>
+        <p id="wifiPassword">Wi-Fi 密码: 15545696678</p>
 
-  <div class="content">
-    <h1>欢迎来到 zuoao321321 的咖啡屋</h1>
-    <p>若此刻你能看见这些文字，说明你曾到访我家，品过那杯微苦的咖啡。<br>
-       这里不对外公开，只为真正的朋友保留。<br>
-       在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。</p>
+        <!-- 按钮：播放音乐 -->
+        <button id="musicButton">如果没有音乐，点我一下</button>
+        
+        <!-- 背景音乐 -->
+        <audio id="bgMusic" src="assets/castle-music.mp3" preload="auto" autoplay></audio>
+    </div>
 
-    <button class="btn" onclick="showPassword()">点击查看 Wi‑Fi 密码</button>
-    <div id="wifi-password">15545696678</div>
-  </div>
-
-  <!-- 背景音乐，首次加载后自动播放 -->
-<audio src="assets/castle-music.mp3" autoplay loop></audio>
-  <button id="playButton">► 播放/暂停音乐</button>
-
-  <script>
-    // 页面加载后尝试自动播放
-    window.addEventListener('load', () => {
-      const audio = document.getElementById('bgm');
-      audio.play().catch(()=>{/* 自动播放被阻止 */});
-    });
-
-    // Wi-Fi 密码显示
-    function showPassword() {
-      document.getElementById('wifi-password').style.display = 'block';
-    }
-
-    // 播放/暂停按钮
-    const btn = document.getElementById('playButton');
-    const bgm = document.getElementById('bgm');
-    btn.addEventListener('click', () => {
-      if (bgm.paused) { bgm.play(); btn.textContent = '❚❚ 暂停音乐'; }
-      else           { bgm.pause(); btn.textContent = '► 播放音乐'; }
-    });
-  </script>
+    <script>
+        // 显示 Wi-Fi 密码
+        document.getElementById('wifiButton').addEventListener('click', function() {
+            var pwdElem = document.getElementById('wifiPassword');
+            pwdElem.style.display = 'block';
+        });
+        // 强制播放音乐
+        document.getElementById('musicButton').addEventListener('click', function() {
+            var music = document.getElementById('bgMusic');
+            music.play();
+        });
+    </script>
 </body>
 </html>
