@@ -1,89 +1,74 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <title>Castle 主页</title>
-    <style>
-        /* 整体样式 */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            /* 背景图片 */
-            background-image: url('assets/castle-background.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            animation: fadein 2s ease-in;
-        }
-        @keyframes fadein {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        /* 内容容器 */
-        .content {
-            /* 半透明背景来增强可读性（可根据需要调整或移除） */
-            background-color: rgba(255, 255, 255, 0.5);
-            padding: 20px;
-            border-radius: 12px;
-        }
-        /* 按钮样式 */
-        button {
-            background-color: #A67C52; /* 棕色系 */
-            color: #ffffff;
-            border: 2px solid #5C3A21;
-            border-radius: 8px;
-            font-size: 16px;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            opacity: 0.9;
-            transition: opacity 0.3s;
-        }
-        button:hover {
-            opacity: 1;
-        }
-        /* 密码显示样式 */
-        #wifiPassword {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #5C3A21;
-            display: none; /* 初始隐藏 */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>朋友的咖啡角落</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: "Georgia", serif;
+      text-shadow: 2px 2px 4px #000;
+      background-image: url('assets/castle-background.png');
+      background-repeat: no-repeat;       /* 避免背景平铺 */
+      background-size: cover;            /* 缩放填满视口&#8203;:contentReference[oaicite:8]{index=8} */
+      background-position: center;
+      background-attachment: fixed;      /* 固定背景（移动端可能不生效&#8203;:contentReference[oaicite:9]{index=9}） */
+      height: 100vh;
+    }
+    .content {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 700px;
+      text-align: center;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: 'STSong', serif;
+      border: none;
+      border-radius: 10px;
+      background-color: #8b5e3c;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    #wifi-password {
+      margin-top: 15px;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="content">
-        <!-- 按钮：查看 Wi-Fi 密码 -->
-        <button id="wifiButton">点击查看 Wi-Fi 密码</button><br>
-        <p id="wifiPassword">Wi-Fi 密码: 15545696678</p>
+  <div class="content">
+    <h1>zuoao321321</h1>
+    <p>若此刻你能看见这些文字，说明你曾到访我家，坐在那把木椅，品过那杯微苦的咖啡。这里只对外公开，只为真正的朋友保留。在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。</p>
+    <button id="play-music">如果没有音乐，点我一下</button>
+    <button id="wifi-btn">点击查看 Wi-Fi 密码</button>
+    <p id="wifi-password">15545696678</p>
+  </div>
 
-        <!-- 按钮：播放音乐 -->
-        <button id="musicButton">如果没有音乐，点我一下</button>
-        
-        <!-- 背景音乐 -->
-        <audio id="bgMusic" src="assets/castle-music.mp3" preload="auto" autoplay></audio>
-    </div>
-
-    <script>
-        // 显示 Wi-Fi 密码
-        document.getElementById('wifiButton').addEventListener('click', function() {
-            var pwdElem = document.getElementById('wifiPassword');
-            pwdElem.style.display = 'block';
-        });
-        // 强制播放音乐
-        document.getElementById('musicButton').addEventListener('click', function() {
-            var music = document.getElementById('bgMusic');
-            music.play();
-        });
-    </script>
+  <!-- 音频元素 src 路径已改为正确位置 -->
+<audio src="assets/castle-music.mp3" autoplay loop></audio>
+    
+  <script>
+    // 播放音乐按钮绑定播放音频&#8203;:contentReference[oaicite:10]{index=10}&#8203;:contentReference[oaicite:11]{index=11}
+    document.getElementById("play-music").addEventListener("click", function() {
+      var audio = document.getElementById("audio");
+      audio.play();
+    });
+    // Wi-Fi 密码按钮显示/隐藏密码
+    document.getElementById("wifi-btn").addEventListener("click", function() {
+      var pw = document.getElementById("wifi-password");
+      pw.style.display = (pw.style.display === "none" ? "block" : "none");
+    });
+  </script>
 </body>
 </html>
