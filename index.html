@@ -56,8 +56,8 @@
   </div>
 
   <!-- 音频元素 src 路径已改为正确位置 -->
-<audio src="assets/castle-music.mp3" autoplay loop></audio>
-    
+  <audio id="audio" src="castle-music.mp3" loop></audio> 
+
   <script>
     // 播放音乐按钮绑定播放音频&#8203;:contentReference[oaicite:10]{index=10}&#8203;:contentReference[oaicite:11]{index=11}
     document.getElementById("play-music").addEventListener("click", function() {
@@ -68,7 +68,3 @@
     document.getElementById("wifi-btn").addEventListener("click", function() {
       var pw = document.getElementById("wifi-password");
       pw.style.display = (pw.style.display === "none" ? "block" : "none");
-    });
-  </script>
-</body>
-</html>
