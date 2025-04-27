@@ -1,70 +1,135 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>朋友的咖啡角落</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-family: "Georgia", serif;
-      text-shadow: 2px 2px 4px #000;
-      background-image: url('assets/castle-background.png');
-      background-repeat: no-repeat;       /* 避免背景平铺 */
-      background-size: cover;            /* 缩放填满视口&#8203;:contentReference[oaicite:8]{index=8} */
-      background-position: center;
-      background-attachment: fixed;      /* 固定背景（移动端可能不生效&#8203;:contentReference[oaicite:9]{index=9}） */
-      height: 100vh;
+<meta charset="UTF-8">
+<title>朋友專屬咖啡屋</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: url('assets/castle-background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+  }
+  .container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    max-width: 800px;
+    margin: 20px;
+  }
+  .container p {
+    margin: 0 0 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  }
+  button {
+    font-family: inherit;
+    font-size: 1em;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.8);
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: rgba(255,255,255,1);
+  }
+  /* Wi-Fi password overlay */
+  #wifiOverlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+  }
+  .wifiContent {
+    background: rgba(40,40,40,0.9);
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%;
+  }
+  .wifiContent p {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+  }
+  .wifiContent button {
+    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.8);
+    color: #333;
+  }
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px 15px;
     }
-    .content {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 2rem;
-      border-radius: 20px;
-      max-width: 700px;
-      text-align: center;
+    .container p {
+      font-size: 1.1em;
     }
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-family: 'STSong', serif;
-      border: none;
-      border-radius: 10px;
-      background-color: #8b5e3c;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      padding: 8px 16px;
+      margin: 4px;
     }
-    #wifi-password {
-      margin-top: 15px;
-      font-size: 18px;
-      display: none;
+    .wifiContent p {
+      font-size: 1.1em;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="content">
-    <h1>zuoao321321</h1>
-    <p>若此刻你能看见这些文字，说明你曾到访我家，坐在那把木椅，品过那杯微苦的咖啡。这里只对外公开，只为真正的朋友保留。在这个透明的瞬间，我们以咖啡为媒，共享一段静谧的时光。</p>
-    <button id="play-music">如果没有音乐，点我一下</button>
-    <button id="wifi-btn">点击查看 Wi-Fi 密码</button>
-    <p id="wifi-password">15545696678</p>
+  <div class="container">
+    <p>若你此刻能看見這些文字，意味著你曾獲邀來到這隱秘的小屋，坐在那把木椅，啜飲如同記憶般微苦的咖啡。這裡只為摯友而開，遠離喧囂，時間在此凝滯成金色的余暉。我們以咖啡為媒，細數歲月的味道，讓靜謐與溫暖在心中流淌，輕輕照亮彼此內心深處不為人知的角落。</p>
+    <button id="musicBtn">播放音樂</button>
+    <button id="wifiBtn">查看 Wi-Fi 密碼</button>
   </div>
 
-  <!-- 音频元素 src 路径已改为正确位置 -->
-  <audio id="audio" src="castle-music.mp3" loop></audio> 
+  <div id="wifiOverlay">
+    <div class="wifiContent">
+      <p>Wi-Fi 密碼：<strong>15545696678</strong></p>
+      <button id="closeWifi">關閉</button>
+    </div>
+  </div>
 
-  <script>
-    // 播放音乐按钮绑定播放音频&#8203;:contentReference[oaicite:10]{index=10}&#8203;:contentReference[oaicite:11]{index=11}
-    document.getElementById("play-music").addEventListener("click", function() {
-      var audio = document.getElementById("audio");
-      audio.play();
-    });
-    // Wi-Fi 密码按钮显示/隐藏密码
-    document.getElementById("wifi-btn").addEventListener("click", function() {
-      var pw = document.getElementById("wifi-password");
-      pw.style.display = (pw.style.display === "none" ? "block" : "none");
+  <audio id="bgMusic" src="assets/castle-music.mp3" loop></audio>
+
+<script>
+  var bgMusic = document.getElementById('bgMusic');
+  var musicBtn = document.getElementById('musicBtn');
+  musicBtn.addEventListener('click', function() {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      musicBtn.textContent = '暫停音樂';
+    } else {
+      bgMusic.pause();
+      musicBtn.textContent = '播放音樂';
+    }
+  });
+  var wifiBtn = document.getElementById('wifiBtn');
+  var wifiOverlay = document.getElementById('wifiOverlay');
+  var closeWifi = document.getElementById('closeWifi');
+  wifiBtn.addEventListener('click', function() {
+    wifiOverlay.style.display = 'flex';
+  });
+  closeWifi.addEventListener('click', function() {
+    wifiOverlay.style.display = 'none';
+  });
+</script>
+</body>
+</html>
