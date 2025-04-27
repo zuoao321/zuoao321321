@@ -1,191 +1,160 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>zuoao321321 的咖啡屋</title>
+  <title>zuoao321 咖啡屋</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 引入 Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noticia+Text&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* 全局重置 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    /* 视频背景与覆盖层 */
     body {
-      margin: 0;
-      padding: 0;
-      font-family: "STSong", serif;
-      background-image: url('assets/castle-background.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      color: white;
+      font-family: 'Noto Serif TC', serif;
+      color: #f2e9e4;
+      overflow: hidden;
+      position: relative;
+    }
+    video#bgVideo {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; /* 保持比例并填满 */
+      z-index: -2;
+    }
+    .overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6); /* 半透明深色蒙版 */
+      z-index: -1;
+    }
+
+    /* 内容容器 */
+    .container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      backdrop-filter: brightness(0.7);
+      height: 100%;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-out;
     }
-    .content {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 2rem;
-      border-radius: 20px;
+    h1 {
+      font-family: 'Noticia Text', serif;
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+    p {
+      font-size: 1.2em;
       max-width: 600px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      line-height: 1.6;
+      margin-bottom: 1.5em;
     }
+
+    /* 按钮样式 */
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-family: 'STSong', serif;
-      border: none;
-      border-radius: 10px;
-      background-color: rgba(139, 94, 60, 0.8);
-      color: white;
+      font-family: inherit;
+      font-size: 1em;
+      padding: 0.8em 1.5em;
+      margin: 0.5em;
+      border: 2px solid #f2e9e4;
+      background: transparent;
+      color: #f2e9e4;
+      border-radius: 5px;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      transition: background 0.3s, transform 0.2s;
     }
-    #wifi-password {
-      margin-top: 15px;
-      font-size: 18px;
+    button:hover {
+      background: rgba(242,233,228,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Wi-Fi 密码弹层 */
+    #wifiOverlay {
       display: none;
-      background-color: rgba(255,255,255,0.1);
-      padding: 10px;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      align-items: center; justify-content: center;
+      z-index: 10;
+    }
+    .wifiBox {
+      background: #2a2a2a;
+      padding: 2em;
       border-radius: 8px;
-      border: 1px dashed #ccc;
+      border: 2px solid #f2e9e4;
+      text-align: center;
+    }
+    .wifiBox p {
+      font-size: 1.4em;
+      margin-bottom: 1em;
+      letter-spacing: 1px;
+    }
+
+    /* 淡入动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 响应式布局 */
+    @media screen and (max-width: 600px) {
+      h1 { font-size: 2em; }     /* 小屏标题缩小&#8203;:contentReference[oaicite:8]{index=8} */
+      p  { font-size: 1em; }     /* 小屏段落缩小&#8203;:contentReference[oaicite:9]{index=9} */
+      button { width: 80%; }     /* 按钮自适应宽度 */
     }
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>欢迎回来，朋友</h1>
-    <p><!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8">
-<title>朋友咖啡屋</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background: url('assets/castle-background.png') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-    color: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100vh;
-  }
-  .container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    max-width: 800px;
-    margin: 20px;
-  }
-  .container p {
-    margin: 0 0 20px 0;
-    font-size: 1.3em;
-    line-height: 1.6;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-  }
-  button {
-    font-family: inherit;
-    font-size: 1em;
-    padding: 10px 20px;
-    margin: 5px;
-    border: 2px solid rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.8);
-    color: #333;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  button:hover {
-    background: rgba(255,255,255,1);
-  }
-  /* Wi-Fi password overlay */
-  #wifiOverlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    align-items: center;
-    justify-content: center;
-  }
-  .wifiContent {
-    background: rgba(40,40,40,0.9);
-    color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 90%;
-  }
-  .wifiContent p {
-    margin: 0 0 15px 0;
-    font-size: 1.2em;
-  }
-  .wifiContent button {
-    border: 2px solid rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.8);
-    color: #333;
-  }
-  @media (max-width: 600px) {
-    .container {
-      padding: 20px 15px;
-    }
-    .container p {
-      font-size: 1.1em;
-    }
-    button {
-      padding: 8px 16px;
-      margin: 4px;
-    }
-    .wifiContent p {
-      font-size: 1.1em;
-    }
-  }
-</style>
-</head>
-<body>
+
+  <!-- 视频背景 -->
+  <video id="bgVideo" autoplay muted loop playsinline>
+    <source src="assets/coffee-pour.mp4" type="video/mp4">
+    您的瀏覽器不支援內嵌影片。
+  </video>
+  <div class="overlay"></div>
+
+  <!-- 主要内容 -->
   <div class="container">
-    <p>若你此刻能看見這些文字，意味著你曾獲邀來到這隱秘的小屋，坐在那把木椅，啜飲如同記憶般微苦的咖啡。這裡只為摯友而開，遠離喧囂，時間在此凝滯成金色的余暉。我們以咖啡為媒，細數歲月的味道，讓靜謐與溫暖在心中流淌，輕輕照亮彼此內心深處不為人知的角落。</p>
-    <button id="musicBtn">播放音樂</button>
+    <h1>zuoao321 影像咖啡屋</h1>
+    <p>若你此刻能看見這些文字，意味著你曾被邀请踏入這個隱秘的空間，聆聽咖啡滴落的韻律。這裡，時間化作循環的液體，在心底蕩起溫柔漣漪，只為真正的朋友而存。</p>
+    <button id="musicBtn">播放 / 暫停 音樂</button>
     <button id="wifiBtn">查看 Wi-Fi 密碼</button>
   </div>
 
+  <!-- Wi-Fi 密碼弹层 -->
   <div id="wifiOverlay">
-    <div class="wifiContent">
+    <div class="wifiBox">
       <p>Wi-Fi 密碼：<strong>15545696678</strong></p>
       <button id="closeWifi">關閉</button>
     </div>
   </div>
 
+  <!-- 背景音樂 -->
   <audio id="bgMusic" src="assets/castle-music.mp3" loop></audio>
 
-<script>
-  var bgMusic = document.getElementById('bgMusic');
-  var musicBtn = document.getElementById('musicBtn');
-  musicBtn.addEventListener('click', function() {
-    if (bgMusic.paused) {
-      bgMusic.play();
-      musicBtn.textContent = '暫停音樂';
-    } else {
-      bgMusic.pause();
-      musicBtn.textContent = '播放音樂';
-    }
-  });
-  var wifiBtn = document.getElementById('wifiBtn');
-  var wifiOverlay = document.getElementById('wifiOverlay');
-  var closeWifi = document.getElementById('closeWifi');
-  wifiBtn.addEventListener('click', function() {
-    wifiOverlay.style.display = 'flex';
-  });
-  closeWifi.addEventListener('click', function() {
-    wifiOverlay.style.display = 'none';
-  });
-</script>
+  <script>
+    // 音樂播放控制
+    const bgMusic = document.getElementById('bgMusic');  
+    const musicBtn = document.getElementById('musicBtn');  
+    musicBtn.addEventListener('click', () => {
+      if (bgMusic.paused) { bgMusic.play(); musicBtn.textContent = '暫停 音樂'; }
+      else               { bgMusic.pause(); musicBtn.textContent = '播放 音樂'; }
+    });  
+
+    // Wi-Fi 密碼弹层控制
+    const wifiBtn = document.getElementById('wifiBtn');  
+    const wifiOverlay = document.getElementById('wifiOverlay');  
+    document.getElementById('closeWifi').addEventListener('click', () => {
+      wifiOverlay.style.display = 'none';
+    });  
+    wifiBtn.addEventListener('click', () => {
+      wifiOverlay.style.display = 'flex';
+    });  
+  </script>
 </body>
 </html>
